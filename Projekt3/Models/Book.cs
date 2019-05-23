@@ -18,6 +18,7 @@ namespace Projekt3.Models
 
        public string year { get; set; }
 
+       public int id { get; set; }
 
     }
 }

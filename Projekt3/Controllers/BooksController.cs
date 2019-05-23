@@ -54,7 +54,18 @@ namespace Projekt3.Controllers
             List<Book> list;
             list = LoadJson();
 
-            Console.WriteLine(newBook.title);
+            int max = 0;
+            foreach (Book singleBook in list)
+            {
+                if (singleBook.id > max)
+                {
+                    max = singleBook.id;
+                }
+
+
+            }
+            max = max + 1;
+            newBook.id = max;
             list.Add(newBook);
             string json = JsonConvert.SerializeObject(list.ToArray());
 
@@ -67,8 +78,23 @@ namespace Projekt3.Controllers
 
         // PUT: api/Books/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public List<Book> Put(int id, [FromBody] Book newBook)
         {
+
+            List<Book> list;
+            list = LoadJson();
+
+            Console.WriteLine(newBook.title);
+            list.Add(newBook);
+            string json = JsonConvert.SerializeObject(list.ToArray());
+
+            //write string to file
+            System.IO.File.WriteAllText("Data.json", json);
+
+            return list;
+
+
+
         }
 
         // DELETE: api/ApiWithActions/5
