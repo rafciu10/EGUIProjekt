@@ -62,7 +62,6 @@ namespace Projekt3.Controllers
                     max = singleBook.id;
                 }
 
-
             }
             max = max + 1;
             newBook.id = max;
@@ -71,29 +70,27 @@ namespace Projekt3.Controllers
 
             //write string to file
             System.IO.File.WriteAllText("Data.json", json);
-
             return list;
           
         }
 
         // PUT: api/Books/5
         [HttpPut("{id}")]
-        public List<Book> Put(int id, [FromBody] Book newBook)
+        public List<Book> Put(int id, [FromBody] Book editBook)
         {
 
             List<Book> list;
             list = LoadJson();
+            int bookIndex = list.FindIndex((book) => book.id.ToString() == id.ToString());
+            editBook.id = id;
+            list[bookIndex] = editBook;
 
-            Console.WriteLine(newBook.title);
-            list.Add(newBook);
             string json = JsonConvert.SerializeObject(list.ToArray());
-
+            
             //write string to file
             System.IO.File.WriteAllText("Data.json", json);
 
             return list;
-
-
 
         }
 
