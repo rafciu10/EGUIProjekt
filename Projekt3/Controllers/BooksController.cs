@@ -49,10 +49,20 @@ namespace Projekt3.Controllers
 
         // POST: api/Books
         [HttpPost]
-        public string Post([FromBody] string value)
+        public List<Book> Post([FromBody] Book newBook)
         {
-            
-            return value;
+            List<Book> list;
+            list = LoadJson();
+
+            Console.WriteLine(newBook.title);
+            list.Add(newBook);
+            string json = JsonConvert.SerializeObject(list.ToArray());
+
+            //write string to file
+            System.IO.File.WriteAllText("Data.json", json);
+
+            return list;
+          
         }
 
         // PUT: api/Books/5
