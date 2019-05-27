@@ -96,8 +96,22 @@ namespace Projekt3.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public List<Book> Delete(int id)
         {
+            List<Book> list;
+      
+            list = LoadJson();
+            int bookIndex = list.FindIndex((book) => book.id.ToString() == id.ToString());
+            list.RemoveAt(bookIndex);
+
+
+            string json = JsonConvert.SerializeObject(list.ToArray());
+
+            //write string to file
+            System.IO.File.WriteAllText("Data.json", json);
+
+            return list;
+
         }
     }
 }
