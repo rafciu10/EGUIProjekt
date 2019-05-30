@@ -18,13 +18,17 @@ export default class Nav extends Component {
 
     render() {
         return (
-            <div>
-
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="btn-group btn-group-lg">
+                       
                 <button type="button" class="btn btn-primary" onClick={this.onClickAddNewBook} >Add new Book</button>
                 <button type="button" class="btn btn-warning">Edit selected book</button>
                 <button type="button" class="btn btn-danger">Delete selected book</button>
-
+                    </div>
+                </div>
             </div>
+         
         );
     }
 }

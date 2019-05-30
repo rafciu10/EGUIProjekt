@@ -5,7 +5,8 @@ export default class BookList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { books: []}
+        this.state = { books: [] }
+        this.setBookListState = this.setBookListState.bind(this)
     }
 
 
@@ -24,6 +25,16 @@ export default class BookList extends Component {
             })
             .catch(error => console.error('Error:', error))
     }
+
+
+    setBookListState(bookList) {
+
+        this.setState({books:bookList})
+
+    }
+
+
+
 
     render() {
         return (      

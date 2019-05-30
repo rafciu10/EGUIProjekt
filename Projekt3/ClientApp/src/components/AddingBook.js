@@ -6,18 +6,57 @@ export default class AddingBook extends Component {
     constructor(props) {
         super(props);
         this.onClickClose = this.onClickClose.bind(this)
+        this.onChangeAuthor = this.onChangeAuthor.bind(this)
+        this.onChangeTitle = this.onChangeTitle.bind(this)
+        this.onChangeYear = this.onChangeYear.bind(this)
+        this.author = null
+        this.title = null
+        this.year = null
+
     }
 
 
     onClickClose() {
 
-        this.props.setIsVisible(false)
+             
+       
+        fetch('https://localhost:44371/api/books', {
+            method: 'POST',
+            body: JSON.stringify({
+                author: this.author,
+                title: this.title,
+                year: this.year
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .then(response => {
+                this.props.setBookList(response)
+                this.props.setIsVisible(false)
+            }) 
+            .catch(error => console.error('Error:', error));
+      
     }
 
     onChangeAuthor(event) {
 
-        console.log(event.target.value)
+        this.author = event.target.value
+    
     }
+
+    onChangeTitle(event) {
+
+        this.title = event.target.value
+       
+    }
+
+    onChangeYear(event) {
+
+        this.year = event.target.value
+        
+    }
+
 
     render() {
         return (
@@ -34,14 +73,14 @@ export default class AddingBook extends Component {
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Title</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1"/>
+                    <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" onChange={this.onChangeTitle}/>
                 </div>
 
                 <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">Year</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1"/>
+                    <input type="text" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1" onChange={this.onChangeYear}/>
                 </div>
 
 

@@ -10,6 +10,8 @@ export class Home extends Component {
         super(props);
         this.state = { isVisible: false }
         this.setIsVisible = this.setIsVisible.bind(this)
+        this.setBookList = this.setBookList.bind(this)
+        
 
     }
 
@@ -19,15 +21,22 @@ export class Home extends Component {
 
     }
 
+    setBookList(bookList) {
+        
+        this.bookListReference.setBookListState(bookList)
+
+    }
+
+
 
   render() {
     return (
       <div>
             <h1>Book Library</h1>
-            <BookList />
+            <BookList ref={node => this.bookListReference = node}  />
             <Nav setIsVisible={this.setIsVisible} />
 
-            {this.state.isVisible && <AddingBook setIsVisible={this.setIsVisible} />}           
+            {this.state.isVisible && <AddingBook setIsVisible={this.setIsVisible} setBookList={this.setBookList} />}           
             
 
       </div>
