@@ -11,6 +11,7 @@ export class Home extends Component {
         this.state = { isVisible: false }
         this.setIsVisible = this.setIsVisible.bind(this)
         this.setBookList = this.setBookList.bind(this)
+        this.onClickDelete = this.onClickDelete.bind(this)
         
 
     }
@@ -27,14 +28,20 @@ export class Home extends Component {
 
     }
 
+    onClickDelete() {
+
+        this.bookListReference.onClickDelete()
+     
+    }
+
 
 
   render() {
     return (
       <div>
             <h1>Book Library</h1>
-            <BookList ref={node => this.bookListReference = node}  />
-            <Nav setIsVisible={this.setIsVisible} />
+            <BookList ref={node => this.bookListReference = node} />
+            <Nav onClickDelete={this.onClickDelete} setIsVisible={this.setIsVisible} />
 
             {this.state.isVisible && <AddingBook setIsVisible={this.setIsVisible} setBookList={this.setBookList} />}           
             

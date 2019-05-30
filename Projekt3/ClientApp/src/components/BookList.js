@@ -8,6 +8,7 @@ export default class BookList extends Component {
         this.state = { books: [], clickedBookIndex: null }
         this.setBookListState = this.setBookListState.bind(this)
         this.onSelectBook = this.onSelectBook.bind(this)
+        this.onClickDelete = this.onClickDelete.bind(this)
     }
 
 
@@ -38,6 +39,29 @@ export default class BookList extends Component {
 
         this.setState({ clickedBookIndex: index })
 
+    }
+
+
+    onClickDelete() {
+
+      
+        const selectedBook = this.state.books[this.state.clickedBookIndex]
+        if (selectedBook) {
+
+            fetch('https://localhost:44371/api/books/' + selectedBook.id, {
+                method: 'DELETE',
+                body: JSON.stringify(),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then(response => {
+                    this.setState({ books: response })
+                })
+                .catch(error => console.error('Error:', error))
+        }     
+                 
     }
 
 
