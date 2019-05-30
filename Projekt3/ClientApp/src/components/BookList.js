@@ -5,10 +5,11 @@ export default class BookList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { books: [], clickedBookIndex: null }
+        this.state = { books: [], clickedBookIndex: null, filterAuthor: "", filterTitle: "", filterYear: "" }
         this.setBookListState = this.setBookListState.bind(this)
         this.onSelectBook = this.onSelectBook.bind(this)
         this.onClickDelete = this.onClickDelete.bind(this)
+        this.onChangeFilterTitle = this.onChangeFilterTitle.bind(this)
     }
 
 
@@ -64,6 +65,17 @@ export default class BookList extends Component {
                  
     }
 
+    onChangeFilterTitle(title) {
+
+
+        this.setState({ filterTitle: title })
+        console.log("bookList", title)
+
+
+
+    }
+
+
 
     render() {
         return (      
@@ -78,7 +90,8 @@ export default class BookList extends Component {
                 </thead>
                 <tbody>
                     {
-                        this.state.books.map((item, index) => <Book isActive={this.state.clickedBookIndex===index} onSelectBook={this.onSelectBook} author={item.author} title={item.title} year={item.year} index={index} />)
+
+                        this.state.books.filter(item => item.title.includes(this.state.filterTitle)).map((item, index) => <Book isActive={this.state.clickedBookIndex === index} onSelectBook={this.onSelectBook} author={item.author} title={item.title} year={item.year} index={index} />)
 
                     }
                 </tbody>
