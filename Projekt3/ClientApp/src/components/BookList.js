@@ -5,8 +5,9 @@ export default class BookList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { books: [] }
+        this.state = { books: [], clickedBookIndex: null }
         this.setBookListState = this.setBookListState.bind(this)
+        this.onSelectBook = this.onSelectBook.bind(this)
     }
 
 
@@ -33,12 +34,16 @@ export default class BookList extends Component {
 
     }
 
+    onSelectBook(index) {
 
+        this.setState({ clickedBookIndex: index })
+
+    }
 
 
     render() {
         return (      
-            <table class="table">
+            <table class="table">            
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -49,7 +54,7 @@ export default class BookList extends Component {
                 </thead>
                 <tbody>
                     {
-                        this.state.books.map((item, index) => <Book author={item.author} title={item.title} year={item.year} index={index + 1} />)
+                        this.state.books.map((item, index) => <Book isActive={this.state.clickedBookIndex===index} onSelectBook={this.onSelectBook} author={item.author} title={item.title} year={item.year} index={index} />)
 
                     }
                 </tbody>
