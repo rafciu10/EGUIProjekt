@@ -9,6 +9,7 @@ export default class Nav extends Component {
         super(props);
         this.onClickAddNewBook = this.onClickAddNewBook.bind(this)
         this.onClickDeleteBook = this.onClickDeleteBook.bind(this)
+        this.onClickEditBook = this.onClickEditBook.bind(this)
     }
 
     onClickAddNewBook() {
@@ -22,6 +23,10 @@ export default class Nav extends Component {
 
     }
 
+    onClickEditBook() {
+
+        this.props.onClickEdit()
+    }
 
     render() {
         return (
@@ -30,7 +35,7 @@ export default class Nav extends Component {
                     <div class="btn-group btn-group-lg">
                        
                         <button type="button" class="btn btn-primary" onClick={this.onClickAddNewBook} >Add new Book</button>
-                        <button type="button" class="btn btn-warning">Edit selected book</button>
+                        <button type="button" class="btn btn-warning" onClick={this.onClickEditBook} >Edit selected book</button>
                         <button type="button" class="btn btn-danger" onClick={this.onClickDeleteBook} > Delete selected book</button>
                     </div>
                 </div>

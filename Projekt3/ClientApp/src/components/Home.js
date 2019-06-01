@@ -13,9 +13,10 @@ export class Home extends Component {
         this.setIsVisible = this.setIsVisible.bind(this)
         this.setBookList = this.setBookList.bind(this)
         this.onClickDelete = this.onClickDelete.bind(this)
+        this.onClickEdit = this.onClickEdit.bind(this)
         this.onChangeFilterTitle = this.onChangeFilterTitle.bind(this)
-        
-
+        this.onChangeFilterAuthor = this.onChangeFilterAuthor.bind(this)
+        this.onChangeFilterYear = this.onChangeFilterYear.bind(this)
     }
 
     setIsVisible(isVisible) {
@@ -36,20 +37,42 @@ export class Home extends Component {
      
     }
 
+    onClickEdit() {
+
+        this.bookListReference.onClickEdit()
+    }
+   
+
     onChangeFilterTitle(title) {
 
         this.bookListReference.onChangeFilterTitle(title)
 
     }
 
+    onChangeFilterAuthor(author) {
+
+        this.bookListReference.onChangeFilterAuthor(author)
+
+    }
+
+    onChangeFilterYear(year) {
+
+        this.bookListReference.onChangeFilterYear(year)
+
+    }
+
 
   render() {
-    return (
-      <div>
+      return (
+          
+        <div>
+                      
             <h1>Book Library</h1>
-            <Filter onChangeFilterTitle={this.onChangeFilterTitle} />
+            <h4> Filter </h4>
+            
+            <Filter onChangeFilterTitle={this.onChangeFilterTitle} onChangeFilterAuthor={this.onChangeFilterAuthor} onChangeFilterYear={this.onChangeFilterYear}/>
             <BookList ref={node => this.bookListReference = node} />
-            <Nav onClickDelete={this.onClickDelete} setIsVisible={this.setIsVisible} />
+            <Nav onClickDelete={this.onClickDelete} onClickEdit={this.onClickEdit} setIsVisible={this.setIsVisible} />
 
             {this.state.isVisible && <AddingBook setIsVisible={this.setIsVisible} setBookList={this.setBookList} />}           
             

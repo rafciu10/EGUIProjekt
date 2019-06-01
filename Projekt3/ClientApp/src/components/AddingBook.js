@@ -73,14 +73,14 @@ export default class AddingBook extends Component {
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Title</span>
                         </div>
-                    <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" onChange={this.onChangeTitle}/>
+                    <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" onChange={this.onChangeTitle} />
                 </div>
 
                 <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">Year</span>
                             </div>
-                    <input type="text" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1" onChange={this.onChangeYear}/>
+                    <input type="text" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1" onChange={this.onChangeYear} />
                 </div>
 
 
