@@ -7,6 +7,8 @@ export default class Filter extends Component {
         this.onChangeAuthor = this.onChangeAuthor.bind(this)
         this.onChangeTitle = this.onChangeTitle.bind(this)
         this.onChangeYear = this.onChangeYear.bind(this)
+        this.onClickClear = this.onClickClear.bind(this)
+        this.onClickFilter = this.onClickFilter.bind(this)
 
     }
 
@@ -29,6 +31,20 @@ export default class Filter extends Component {
         this.props.onChangeFilterYear(event.target.value)
     }
 
+    onClickClear() {
+
+        this.props.onClickClear()
+        this.authorInputReference.value = ""
+        this.titleInputReference.value = ""
+        this.yearInputReference.value = ""
+    }
+
+    onClickFilter() {
+
+        this.props.onClickFilter()
+
+    }
+
 
     render() {
         return (
@@ -39,7 +55,7 @@ export default class Filter extends Component {
                         <div class="input-group mb-3">
                     
                     
-                    <input type="text" class="form-control" placeholder="Author" aria-label="Author" aria-describedby="basic-addon1" onChange={this.onChangeAuthor} />
+                            <input type="text" class="form-control" placeholder="Author" aria-label="Author" aria-describedby="basic-addon1" ref={node => this.authorInputReference = node} onChange={this.onChangeAuthor} />
                 </div>
             </div>  
 
@@ -47,7 +63,7 @@ export default class Filter extends Component {
                 <div class="input-group mb-3">
                     
                     
-                    <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" onChange={this.onChangeTitle} />
+                            <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1" ref={node => this.titleInputReference = node} onChange={this.onChangeTitle} />
                 </div>
             </div>
 
@@ -56,7 +72,7 @@ export default class Filter extends Component {
                  <div class="input-group mb-3">
                     
                      
-                     <input type="text" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1" onChange={this.onChangeYear} />
+                            <input type="text" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1" ref={node => this.yearInputReference = node} onChange={this.onChangeYear} />
                 </div>
             </div>
 
@@ -64,7 +80,7 @@ export default class Filter extends Component {
 
                         <div class="col-sm-1">
                             <div class="input-group mb-3">
-                            <button type="button" class="btn btn-primary"  >Filter</button>
+                                <button type="button" class="btn btn-primary" onClick={this.onClickFilter}  >Filter</button>
                             </div>
                         </div>
                      
@@ -72,7 +88,7 @@ export default class Filter extends Component {
                                 <div class="col-sm-1">
                                     <div class="input-group mb-3">
 
-                            <button type="button" class="btn btn-primary" >Clear</button>
+                                <button type="button" class="btn btn-primary" onClick={this.onClickClear}  >Clear</button>
                             </div>
                         </div>
                     </div>

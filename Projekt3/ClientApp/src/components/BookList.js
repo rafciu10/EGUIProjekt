@@ -9,10 +9,15 @@ export default class BookList extends Component {
         this.setBookListState = this.setBookListState.bind(this)
         this.onSelectBook = this.onSelectBook.bind(this)
         this.onClickDelete = this.onClickDelete.bind(this)
-        this.onClickEdit = this.onClickEdit.bind(this)
+        this.onClickFilter = this.onClickFilter.bind(this)
+        this.onClickClear = this.onClickClear.bind(this)
         this.onChangeFilterTitle = this.onChangeFilterTitle.bind(this)
         this.onChangeFilterAuthor = this.onChangeFilterAuthor.bind(this)
         this.onChangeFilterYear = this.onChangeFilterYear.bind(this)
+        this.filterAuthor = ""
+        this.filterTitle = ""
+        this.filterYear = ""
+
     }
 
 
@@ -45,6 +50,32 @@ export default class BookList extends Component {
 
     }
 
+    onClickClear() {
+
+
+        this.setState({
+            filterYear: "",
+            filterTitle: "",
+            filterAuthor: ""
+
+        })
+
+        this.filterAuthor = ""
+        this.filterTitle = ""
+        this.filterYear = ""
+
+    }
+
+    onClickFilter() {
+
+        this.setState({
+            filterYear: this.filterYear,
+            filterTitle: this.filterTitle,
+            filterAuthor: this.filterAuthor
+
+        })
+        
+    }
 
     onClickDelete() {
 
@@ -68,54 +99,38 @@ export default class BookList extends Component {
                  
     }
 
-    onClickEdit() {
-        /*
-        const selectedBook = this.state.books[this.state.clickedBookIndex]
-        if (selectedBook) {
-            fetch('https://localhost:44371/api/books/' + selectedBook.id, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    author: this.author,
-                    title: this.title,
-                    year: this.year
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => res.json())
-                .then(response => {
-                    this.props.setBookList(response)
-                    
-                })
-                .catch(error => console.error('Error:', error));
-        }
-        */
-        console.log("siema")
+    getSelectedBook() {
+
+        return this.state.books[this.state.clickedBookIndex]
+
     }
+
+ 
 
     onChangeFilterTitle(title) {
 
-        this.setState({ filterTitle: title })
+        this.filterTitle = title
+        
       
     }
 
     onChangeFilterAuthor(author) {
 
-
-        this.setState({ filterAuthor: author })
+        this.filterAuthor = author
+        
  
     }
 
     onChangeFilterYear(year) {
 
-
-        this.setState({ filterYear: year })
+        this.filterYear = year
+        
      
-
     }
 
 
     render() {
+        console.log(this.state)
         return (      
             <table class="table">            
                 <thead>
